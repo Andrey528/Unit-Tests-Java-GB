@@ -1,9 +1,47 @@
 package seminars.first.Calculator;
 import org.assertj.core.api.Condition;
 
+import java.util.Scanner;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class Calculator {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+//        int firstOperand = getOperand();
+//        int secondOperand = getOperand();
+//        char operator = getOperator();
+//        int result = calculation(firstOperand, secondOperand, operator);
+//        System.out.println("Operation result is: " + result);
+
+//        System.out.println(calculatingDiscount(-100, 25));
+
+    }
+
+    public static char getOperator() {
+        System.out.println("Enter operation: ");
+        char operation = scanner.next().charAt(0);
+        return operation;
+    }
+
+    public static int getOperand() {
+        System.out.println("Enter operand: ");
+        int operand;
+        if (scanner.hasNextInt()) {
+            operand = scanner.nextInt();
+        } else {
+            System.out.println("You have mistaken, try again");
+            if (scanner.hasNext()) {
+                scanner.next();
+                operand = getOperand();
+            } else {
+                throw new IllegalStateException("Input error");
+            }
+        }
+        return operand;
+    }
+
     public static int calculation(int firstOperand, int secondOperand, char operator) {
         int result;
 
@@ -53,5 +91,27 @@ public class Calculator {
         }
 
         return Math.round((purchaseAmount * (1 - (double) discountAmount / 100)) * 100.0) / 100.0; // Метод должен возвращать сумму покупки со скидкой
+    }
+
+    //HW2.3L: Добавьте функцию возведения в степень в калькулятор и протестируйте
+    public static int pow(int value, int powValue) {
+        int result = 1;
+
+        for (int a = 1; a <= powValue; a++) {
+            if (a == 0) return 1;
+            result = result * value;
+
+        }
+        return result;
+    }
+
+    public double computeAreaCircle(double radius) {
+        return Math.PI * radius * radius;
+    }
+
+    //HW3.1L: Попробуйте реализовать в калькуляторе с помощью методологии TDD (с описанием шагов) функцию расчета длины окружности
+    // P=2πR
+    public double computeLengthCircle(int r) {
+        return 2*Math.PI*r;
     }
 }

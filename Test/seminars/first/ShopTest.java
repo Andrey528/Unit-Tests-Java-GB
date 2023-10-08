@@ -1,6 +1,8 @@
-package seminars.first.Shop;
+package seminars.first;
 
 import org.assertj.core.api.Condition;
+import seminars.first.Shop.Product;
+import seminars.first.Shop.Shop;
 
 import static org.assertj.core.api.Assertions.*;
 
